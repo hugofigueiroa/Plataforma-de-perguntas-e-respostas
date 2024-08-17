@@ -1,0 +1,40 @@
+<%- include("partials/header") %>
+
+<body>
+
+    <%- include("partials/navbar") %>
+    <main> <!--Início do conteúdo principal-->
+        <section> <!--Início da seção-->
+            <div class="container"> <!--Início do container-->
+                <hr>
+                <h1><%= pergunta.titulo %></h1>
+                <p><%= pergunta.descricao %></p>
+                <hr>
+
+                <form action="/responder" method="post"> <!--Início do formulário-->
+                    <h3>Responda</h3>
+                    <label for="resposta">Resposta:</label>
+                    <br>
+                    <textarea name="corpo" id="resposta" placeholder="Digite sua resposta" class="form-control"></textarea>
+                    <br>
+                    <input type="hidden" name="pergunta" value="<%= pergunta.id %>"> <!-- Input que será usado de forma auxiliar para recuperar o ID da pergunta que o usuário irá responder-->
+                    <button type="submit" class="btn btn-primary w-100">Responder</button>
+                </form> <!--Fim do formulário-->
+                <hr>
+                <h3>Respostas</h3>
+                <hr>
+                <% respostas.forEach(resposta => { %>
+                    <br>
+                    <div class="card"> <!--Início do card-->
+                        <div class="card-body"> <!--Início do corpo do cartão-->
+                            <%= resposta.corpo %>
+                        </div> <!--Fim do corpo do cartçao-->
+                    </div> <!--Fim do card-->
+                <%})%>
+            </div> <!--Fim do container-->
+        </section> <!--Fim da seção-->
+    </main> <!--Fim do conteúdo principal-->
+    
+</body>
+
+<%- include("partials/footer") %>
